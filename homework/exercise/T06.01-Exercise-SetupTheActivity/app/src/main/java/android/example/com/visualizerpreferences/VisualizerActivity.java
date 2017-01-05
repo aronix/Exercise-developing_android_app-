@@ -17,6 +17,7 @@ package android.example.com.visualizerpreferences;
  */
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.example.com.visualizerpreferences.AudioVisuals.AudioInputReader;
 import android.example.com.visualizerpreferences.AudioVisuals.VisualizerView;
@@ -25,6 +26,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class VisualizerActivity extends AppCompatActivity {
@@ -32,6 +36,24 @@ public class VisualizerActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
     private AudioInputReader mAudioInputReader;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.visualizer_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.action_settings){
+            Intent i = new Intent(VisualizerActivity.this,SettingsActivity.class);
+            startActivity(i);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +66,10 @@ public class VisualizerActivity extends AppCompatActivity {
 
     private void defaultSetup() {
         mVisualizerView.setShowBass(true);
-        mVisualizerView.setShowMid(true);
+        mVisualizerView.setShowMid(false);
         mVisualizerView.setShowTreble(true);
-        mVisualizerView.setMinSizeScale(1);
-        mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+        mVisualizerView.setMinSizeScale(3);
+        mVisualizerView.setColor(getString(R.string.pref_color_blue_value));
     }
 
     /**
@@ -115,14 +137,14 @@ public class VisualizerActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (1) Create a new Empty Activity named SettingsActivity; make sure to generate the
+    // COMPLETED (1) Create a new Empty Activity named SettingsActivity; make sure to generate the
     // activity_settings.xml layout file as well and add the activity to the manifest
 
-    // TODO (2) Add a new resource folder called menu and create visualizer_menu.xml
-    // TODO (3) In visualizer_menu.xml create a menu item with a single item. The id and title
+    // COMPLETED (2) Add a new resource folder called menu and create visualizer_menu.xml
+    // COMPLETED (3) In visualizer_menu.xml create a menu item with a single item. The id and title
     // should be saved in strings.xml, it should never be shown as an action,
     // orderInCategory should be 100
 
-    // TODO (5) Add the menu to the menu bar
-    // TODO (6) When the "Settings" menu item is pressed, open SettingsActivity
+    // COMPLETED (5) Add the menu to the menu bar
+    // COMPLETED (6) When the "Settings" menu item is pressed, open SettingsActivity
 }
