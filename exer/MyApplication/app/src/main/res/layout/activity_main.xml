@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         android:padding="16dp">
         <EditText
+            android:id="@+id/et_wish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -20,7 +21,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text ="생성"
+            android:onClick="onclickBtn"/>
 
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
