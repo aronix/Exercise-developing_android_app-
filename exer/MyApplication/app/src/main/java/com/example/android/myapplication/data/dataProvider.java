@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by han sb on 2017-01-14.
@@ -68,11 +70,12 @@ public class dataProvider extends ContentProvider{
                         null,
                         null,
                         s1);
-
+                Log.d("LOG","hi");
                 cursor.setNotificationUri(getContext().getContentResolver(),uri);
                 return cursor;
 
             default:
+                Log.d("LOG","null");
               return null;
         }
 
@@ -93,8 +96,10 @@ public class dataProvider extends ContentProvider{
         switch (sUriMatcher.match(uri)){
             case CODE_WISHS:
                 long id = db.insert(dataContract.WishEntry.TABLE_NAME,null,contentValues);
-                if(id>0)
-                    returnUri = ContentUris.withAppendedId(dataContract.WishEntry.CONTENT_URI,id);
+                if(id>0) {
+                    returnUri = ContentUris.withAppendedId(dataContract.WishEntry.CONTENT_URI, id);
+                    Toast.makeText(getContext(), returnUri.toString(), Toast.LENGTH_SHORT).show();
+                }
                 else
                     throw new android.database.SQLException("failed to insert row into "+uri);
                 break;

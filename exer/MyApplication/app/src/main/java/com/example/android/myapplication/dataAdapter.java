@@ -34,7 +34,7 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.dataViewHolder
     @Override
     public dataViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.data_list_item,parent,false);
-        view.setFocusable(true);
+       // view.setFocusable(true);
 
 
         return new dataViewHolder(view);
@@ -50,7 +50,7 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.dataViewHolder
         holder.itemView.setTag(id);
         holder.wishView.setText(wish);
         holder.lottoView.setText(lotto);
-        holder.dateView.setText(String.valueOf(id));
+        holder.dateView.setText(String.valueOf(date));
 
     }
 

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         rv_showdata.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new dataAdapter(this);
         rv_showdata.setAdapter(mAdapter);
+        getSupportLoaderManager().initLoader(LOADER_ID,null,this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSupportLoaderManager().restartLoader(LOADER_ID,null,this);
     }
 
     @Override
@@ -67,12 +75,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         String lotto ="1-2-3-4-5-6";
         Date d = new Date();
-        String date = d.toString();
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(dataContract.WishEntry.COLUMN_DATE,sdf.format(date).toString());
+        Log.d("TAG",sdf.format(d).toString());
+       // contentValues.put(dataContract.WishEntry.COLUMN_DATE,"123");
+        contentValues.put(dataContract.WishEntry.COLUMN_DATE,sdf.format(d).toString());
         contentValues.put(dataContract.WishEntry.COLUMN_WISH,wish);
         contentValues.put(dataContract.WishEntry.COLUMN_LOTTO,lotto);
         getContentResolver().insert(dataContract.WishEntry.CONTENT_URI,contentValues);
