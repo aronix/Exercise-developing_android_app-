@@ -70,12 +70,10 @@ public class dataProvider extends ContentProvider{
                         null,
                         null,
                         s1);
-                Log.d("LOG","hi");
                 cursor.setNotificationUri(getContext().getContentResolver(),uri);
                 return cursor;
 
             default:
-                Log.d("LOG","null");
               return null;
         }
 
@@ -113,7 +111,18 @@ public class dataProvider extends ContentProvider{
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        return 0;
+        switch (sUriMatcher.match(uri)){
+            case CODE_WISH:
+                String id = uri.getLastPathSegment();
+                SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+                int delnum = db.delete(dataContract.WishEntry.TABLE_NAME,dataContract.WishEntry._ID+"="+id,null);
+                Toast.makeText(getContext(),"DEL: "+uri.toString(),Toast.LENGTH_SHORT).show();
+                return delnum;
+            default:
+                throw new UnsupportedOperationException("unknown uri="+uri);
+        }
+
+
     }
 
     @Override

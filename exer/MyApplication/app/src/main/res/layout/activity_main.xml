@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6"
+            android:hint="writing down your wishes"
             />
         <Button
             android:layout_width="wrap_content"
@@ -26,6 +27,18 @@
             android:onClick="onclickBtn"/>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/lottoAPI_reulst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="lottoNum"
+        android:textAlignment="center"/>
+    <Button
+        android:text="서비스실행"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startServiceTest"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"

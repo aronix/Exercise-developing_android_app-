@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +22,7 @@
             android:authorities="com.example.android.myapplication"
             android:name=".data.dataProvider"
             />
+        <service android:name=".sync.LottoIntentService"/>
     </application>
 
 </manifest>

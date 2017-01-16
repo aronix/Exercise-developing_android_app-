@@ -42,7 +42,8 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.dataViewHolder
 
     @Override
     public void onBindViewHolder(dataViewHolder holder, int position) {
-        mCursor.moveToPosition(position);
+        int newPosition = (mCursor.getCount()-1)-position;
+        mCursor.moveToPosition(newPosition);
         final int id= mCursor.getInt(mCursor.getColumnIndex(dataContract.WishEntry._ID));
         String date = mCursor.getString(mCursor.getColumnIndex(dataContract.WishEntry.COLUMN_DATE));
         String wish = mCursor.getString(mCursor.getColumnIndex(dataContract.WishEntry.COLUMN_WISH));
