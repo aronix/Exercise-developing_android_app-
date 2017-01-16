@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import com.example.android.myapplication.data.LottoPreferences;
 import com.example.android.myapplication.data.dataContract;
 import com.example.android.myapplication.sync.LottoIntentService;
+import com.example.android.myapplication.sync.LottoSyncTask;
 
 import org.w3c.dom.Text;
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     EditText mWishText;
     TextView mAPIView;
     private final static int LOADER_ID=1;
+    private final static int LOADER_GETREQUEST=2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,6 @@ public class MainActivity extends AppCompatActivity
 
         getSupportLoaderManager().initLoader(LOADER_ID,null,this);
 
-
     }
 
     @Override
@@ -98,6 +100,8 @@ public class MainActivity extends AppCompatActivity
                         null,
                         null,
                         null);
+
+
         }
         return null;
     }

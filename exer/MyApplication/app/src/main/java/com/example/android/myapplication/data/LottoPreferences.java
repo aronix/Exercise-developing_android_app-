@@ -17,6 +17,7 @@ public class LottoPreferences {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(PREF_LOTTO_RESULT,result);
+        editor.apply();
     }
 
 
